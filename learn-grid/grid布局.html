@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>grid布局-</title>
+    <style>
+      /* 滚动条整体样式-高宽分别对应横竖滚动条的尺寸 */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 5px;
+      }
+
+      /* 滚动条里面小方块 */
+      ::-webkit-scrollbar-thumb {
+        background-color: rgb(168, 168, 168);
+      }
+
+      /* 滚动条里面轨道 */
+      ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px rgba(168, 168, 168, .9);
+        background: #ededed;
+      }
+
+      /* 部分滚动条整体样式 */
+      .side::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      .container {
+        display: grid;
+        /* grid-template-columns: 200px 1fr 1fr; */
+        grid-template-rows: 50px 1fr 50px;
+        height: 100vh;
+        background-color: bisque;
+      }
+
+      .container.expand {
+        grid-template-columns: 200px 1fr 1fr;
+      }
+
+      .container.collapse {
+        grid-template-columns: 50px 1fr 1fr;
+      }
+
+      .container .header {
+        grid-column-end: 4;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        background-color: aquamarine;
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        line-height: 50px;
+      }
+
+      .container.style-full-top .header {
+        grid-column-start: 1;
+      }
+
+      .container.style-full-side .header {
+        grid-column-start: 2;
+      }
+
+      .container .side {
+        grid-row-end: 4;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        background-color: beige;
+        overflow-y: auto;
+      }
+
+      .container.style-full-top .side {
+        grid-row-start: 2;
+      }
+
+      .container.style-full-side .side {
+        grid-row-start: 1;
+      }
+
+      .container .main {
+        grid-row-start: 2;
+        grid-row-end: 3;
+        grid-column-start: 2;
+        grid-column-end: 4;
+        background-color: azure;
+      }
+
+      .container .footer {
+        grid-row-start: 3;
+        grid-row-end: 4;
+        grid-column-start: 2;
+        grid-column-end: 4;
+        background-color: aqua;
+      }
+
+      .container.scroll-global {
+        overflow-y: auto;
+      }
+
+      .container.scroll-content .main {
+        overflow-y: auto;
+      }
+
+      .control-left,
+      .control-right {
+        padding: 0 10px;
+      }
+
+      .control-right {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="control-left">
+          <button type="button" onclick="setSideStyle()">固定侧边菜单</button>
+        </div>
+        <div class="control-right">
+          <button type="button" onclick="setStyle()">切换风格</button>
+          <button type="button" onclick="setScrollType()">切换滚动位置</button>
+        </div>
+      </div>
+      <div class="side">
+        <ul>
+          <li>Lorem.</li>
+          <li>Facere.</li>
+          <li>Quis.</li>
+          <li>Sint!</li>
+          <li>Reprehenderit?</li>
+          <li>Vitae!</li>
+          <li>A!</li>
+          <li>Eligendi!</li>
+          <li>Nulla!</li>
+          <li>Error?</li>
+          <li>In?</li>
+          <li>Omnis!</li>
+          <li>Odio!</li>
+          <li>Molestias!</li>
+          <li>Quasi.</li>
+          <li>Dolorum.</li>
+          <li>Libero.</li>
+          <li>Laborum?</li>
+          <li>Explicabo!</li>
+          <li>Aut!</li>
+          <li>Ut!</li>
+          <li>Eum?</li>
+          <li>Perferendis?</li>
+          <li>Nulla.</li>
+          <li>Alias.</li>
+          <li>Vel?</li>
+          <li>Ipsam!</li>
+          <li>Voluptatibus?</li>
+          <li>Dolorum!</li>
+          <li>Odio!</li>
+          <li>Deserunt.</li>
+          <li>Doloremque.</li>
+          <li>Ipsa.</li>
+          <li>Fuga!</li>
+          <li>Esse!</li>
+          <li>Eligendi.</li>
+          <li>Quae.</li>
+          <li>Ratione.</li>
+          <li>Explicabo!</li>
+          <li>Illum!</li>
+        </ul>
+      </div>
+      <div class="main">
+        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium minima nemo ducimus magnam sequi, vel
+          deserunt odio consequatur nostrum alias commodi quibusdam incidunt eos esse ut cumque, hic, asperiores eum?
+        </div>
+        <div>Maiores quaerat perferendis officiis cupiditate! Perferendis quas suscipit tempora et dolorem. Maxime,
+          earum eligendi consequatur cupiditate quidem veritatis magnam optio iusto, animi officia tempore unde, porro
+          alias molestiae delectus itaque.</div>
+        <div>Placeat dolorem error earum illo ut saepe a. Inventore, earum. Unde a, eaque quia nemo incidunt, possimus,
+          cupiditate sit magni repudiandae error fugit culpa nobis minus rem corrupti obcaecati quod.</div>
+        <div>Explicabo laborum molestiae asperiores voluptatem, aperiam soluta officiis mollitia nemo, accusamus error
+          sed optio distinctio nesciunt corporis sapiente atque pariatur autem vero expedita debitis itaque quod
+          temporibus! Nulla, dicta laudantium?</div>
+        <div>Cupiditate officiis nulla natus dignissimos impedit hic, exercitationem sint perspiciatis eveniet dicta
+          deserunt nam doloremque laudantium, earum laborum repellat blanditiis praesentium, consequuntur asperiores
+          molestias odio provident. Cupiditate debitis doloremque expedita!</div>
+        <div>Deserunt commodi sit et mollitia deleniti, qui perferendis reiciendis, officia laudantium velit illum rerum
+          necessitatibus harum maxime doloribus alias voluptatum in nostrum fugiat. Laborum, ratione placeat? Neque at
+          quas esse.</div>
+        <div>Rem quidem fugiat reprehenderit vero voluptatem dolorem impedit commodi! Officiis non dolores eveniet ea
+          animi inventore maiores tempora, nostrum eaque est quisquam sed, libero dicta voluptas debitis molestiae,
+          doloribus tenetur.</div>
+        <div>Quasi, velit excepturi. Officiis quidem beatae consectetur laborum perferendis ab accusamus harum ducimus!
+          Illum perspiciatis voluptas sequi. Maxime hic labore, dignissimos possimus ut, blanditiis vel rerum
+          repudiandae, impedit repellat earum?</div>
+        <div>Laborum quasi nemo perferendis temporibus illum porro magnam excepturi itaque optio autem impedit minima
+          quibusdam incidunt culpa amet corporis quos dignissimos iusto, id sint? Ipsa laudantium non officia dolorem
+          repudiandae?</div>
+        <div>Soluta neque, quasi numquam facilis aliquid veritatis, illo culpa quibusdam consequatur rerum, ea totam non
+          itaque ad eius quod sequi? Fuga asperiores ipsam ut tempora facere delectus earum cumque? Sint.</div>
+        <div>Esse labore possimus minus expedita, iusto culpa eaque laborum ipsam veritatis quod, id accusantium, eos
+          architecto. Quidem optio dolore molestias, debitis consequatur ea ab iure? Nulla similique alias cum
+          perferendis?</div>
+        <div>Sequi quasi quaerat vero dolores quis eum neque ex a accusamus consectetur quam blanditiis laborum odit
+          quas, impedit quibusdam aliquid cupiditate doloribus sunt laboriosam voluptatibus optio? Iure repellat quam
+          nihil?</div>
+        <div>Autem ad ullam doloribus. Aliquam nam numquam hic temporibus, tempore laboriosam voluptatibus dolorem modi
+          eligendi alias iusto ut nisi delectus sed neque. Repellat laboriosam ducimus velit autem esse hic nisi?</div>
+        <div>Qui nobis natus repellat quas architecto quis laboriosam ut consectetur neque voluptatem voluptatum
+          doloribus, explicabo est nisi minima laborum quibusdam dolores voluptates quasi magnam aut. Explicabo,
+          mollitia. Vel, repellendus sequi.</div>
+        <div>Laudantium aliquam quod quisquam repudiandae voluptates doloribus tempore ab, sint reiciendis rem odit
+          saepe. Deserunt soluta culpa quidem repellendus? Sed ex iusto autem libero laborum placeat voluptate, magnam
+          omnis ducimus.</div>
+        <div>Quam facere reprehenderit, quaerat esse voluptatibus placeat amet aliquid, non adipisci facilis ea maiores
+          dolor repellendus. Aspernatur aliquam omnis error eligendi architecto tenetur ea, consequuntur quas, nobis
+          odit, cumque fugit.</div>
+        <div>Fugiat accusamus eius dolorem, doloremque provident incidunt enim laudantium cumque a, exercitationem
+          optio? Dolorum officia culpa enim amet, animi voluptatem, aspernatur, nostrum ab eligendi repellendus dicta
+          ducimus minima repellat. Facilis.</div>
+        <div>Laborum distinctio eligendi consequuntur et reiciendis dolorum numquam sed nam minus quo dignissimos
+          obcaecati, inventore, deleniti eveniet nostrum, possimus quod ut eaque non dicta est nobis. Aliquid eos a
+          sapiente?</div>
+        <div>Suscipit cum laudantium maxime iste aliquam sunt, ipsum quod laboriosam qui unde nobis, nisi minus quaerat
+          minima aliquid obcaecati facilis atque sequi neque ratione. Quas, dignissimos. Aut sed quisquam temporibus!
+        </div>
+        <div>In dolore aspernatur natus temporibus illum explicabo odio corrupti dolorum repellat officiis quis mollitia
+          quia quidem, voluptates odit adipisci unde? Illo vitae pariatur quas fugiat ex totam repellendus amet harum.
+        </div>
+        <div>Atque doloribus necessitatibus, officia rem incidunt ut neque id esse quaerat molestias nihil, quasi unde
+          doloremque eius voluptate, impedit possimus et debitis mollitia blanditiis? Sapiente illum quas dolore quod
+          architecto!</div>
+        <div>Ut animi iusto atque, minus quis tempora porro excepturi ex dolores, molestias saepe modi repellendus
+          perferendis quibusdam ipsa eaque omnis? Laborum veniam quibusdam itaque numquam officia ea aliquid accusamus
+          nam.</div>
+        <div>Maxime, pariatur. Expedita magni architecto aut soluta eveniet? Placeat sequi aspernatur recusandae
+          consequuntur iste officiis error modi. Laudantium voluptas ea rerum maiores aspernatur, itaque deserunt
+          adipisci, aliquam dolor unde eveniet.</div>
+        <div>Fuga laboriosam dolorem enim molestias hic fugit magni? Expedita reiciendis soluta debitis nulla cumque
+          eligendi et, esse tempora earum doloribus dolores aspernatur est enim molestias voluptas sed animi quidem ab.
+        </div>
+        <div>Corrupti, sunt ipsam neque est alias deleniti exercitationem tempore ea vel voluptatum quas culpa fugiat
+          tempora. Eum quae a, ratione nostrum ad tempore culpa quo, maxime temporibus deserunt corporis architecto.
+        </div>
+        <div>Expedita sint quasi temporibus repellat consequuntur omnis debitis a velit sed quas quo autem nihil nemo
+          odit, labore vel iure soluta ipsam esse beatae assumenda neque obcaecati. Ducimus, quia aperiam.</div>
+        <div>Quidem ullam non aliquam tempore blanditiis minima beatae, veniam sint veritatis, ea, adipisci velit quasi
+          dolore saepe sed ad odio itaque voluptas. Nemo id eius molestiae ab dicta, deleniti laudantium?</div>
+        <div>Nobis soluta, blanditiis beatae voluptates harum sint quam saepe dolor distinctio sapiente vero sunt maxime
+          placeat vel ipsa eos, consequuntur aliquid? Sequi veritatis culpa excepturi expedita rerum quas, odit
+          laboriosam.</div>
+        <div>Dolorum sequi nisi corrupti illum in, nemo ipsum temporibus illo officiis! Sit, in possimus et tempora vel
+          quaerat nam, quibusdam expedita exercitationem pariatur inventore non earum nobis, ipsam voluptates fugit.
+        </div>
+        <div>Hic sapiente magni fuga quasi repellendus, cumque maxime temporibus laudantium ipsam fugiat accusantium
+          nisi eligendi ea dolore sunt facilis nihil molestias voluptates? Perferendis aperiam ab provident. Facilis
+          iure odio quis.</div>
+        <div>Architecto molestias, dicta optio voluptates eius repellat accusamus voluptatibus ut saepe debitis error
+          qui officia doloremque sint voluptatum impedit maxime soluta ullam? Expedita voluptatem sed dicta officia,
+          aperiam hic provident.</div>
+        <div>Quae architecto accusamus autem ullam dolor, rem expedita unde perferendis saepe fugit aperiam suscipit
+          explicabo, atque aut laborum labore sapiente veritatis incidunt cumque id doloremque veniam pariatur vero?
+          Facere, sed.</div>
+        <div>Impedit debitis eos libero minima recusandae cumque omnis. Vel accusamus eligendi doloribus beatae
+          molestiae ipsa, architecto autem, animi incidunt reiciendis ut at. Amet debitis, tenetur mollitia recusandae
+          culpa aliquid nostrum.</div>
+        <div>Fugiat aperiam maiores dignissimos mollitia suscipit minima perspiciatis similique quas. Neque deserunt
+          vitae aspernatur deleniti aut facere perspiciatis, molestias rem accusamus hic ipsam illum minima nulla ipsa
+          ex quasi numquam.</div>
+        <div>Provident amet illo nisi, dignissimos esse, ex porro vero asperiores optio necessitatibus dolore labore ab
+          aut ullam fuga, ducimus rerum mollitia repellendus omnis! Nostrum vitae natus officia adipisci ipsam sint.
+        </div>
+        <div>Enim odio, repudiandae at qui inventore natus alias temporibus cum maxime impedit distinctio quisquam
+          commodi possimus. Iste repellat dolore placeat numquam expedita itaque at earum eos. Illum illo nemo et.</div>
+        <div>Nesciunt unde quam assumenda accusamus voluptas ullam, placeat expedita odit provident blanditiis quasi.
+          Natus aperiam consequatur perferendis harum, corrupti provident, beatae possimus numquam laudantium corporis
+          in non autem minus inventore.</div>
+        <div>Iste, commodi architecto magni iusto quasi consequatur pariatur, doloribus eligendi a tempora itaque odio
+          recusandae ipsam repellat modi, ullam laboriosam veniam. Adipisci, magni voluptas odit error eligendi
+          inventore quibusdam distinctio.</div>
+        <div>Ad ducimus rem asperiores, sunt illo ratione cupiditate alias nostrum optio consequuntur modi recusandae
+          obcaecati doloribus molestiae officiis numquam quos, minima dolor quasi iure commodi? Modi nihil facilis
+          libero dolores?</div>
+        <div>Minima, aliquam officia! Sapiente quisquam et nostrum perspiciatis illum rem exercitationem obcaecati quia?
+          Eaque impedit ducimus fugiat, consectetur sequi corrupti inventore dolore dolorum placeat. Exercitationem
+          sapiente architecto minima quis nobis.</div>
+        <div>Adipisci architecto id iusto est. Odio doloremque quaerat labore enim voluptatibus placeat corporis quo
+          aliquam aspernatur recusandae. Reiciendis inventore officiis sed quas quis iure repellat, quibusdam provident
+          assumenda! Id, dolor.</div>
+        <div>A esse neque officiis vero incidunt fugiat suscipit, numquam obcaecati placeat provident repellendus, rem
+          blanditiis quia nemo eos beatae sunt iste dolores voluptatibus, consectetur quam sapiente! Earum quaerat a
+          laboriosam?</div>
+        <div>Harum voluptate aperiam numquam quod? Quaerat eius ipsam eum. Nobis iste asperiores officia sunt harum nisi
+          facilis distinctio saepe quae. Sed quos sint rerum, repudiandae fugiat odio at officiis assumenda!</div>
+        <div>Distinctio, facilis facere hic harum consequuntur cum dolorem officiis obcaecati est quisquam fugit
+          eligendi, possimus rerum accusamus a. Ea sint accusantium dolores temporibus tempora non tempore placeat quae
+          dignissimos error!</div>
+        <div>Ex eveniet pariatur corrupti totam, ea minus veritatis vero, nulla beatae debitis consequatur reprehenderit
+          asperiores odit atque aspernatur? Veniam illo laudantium quod aspernatur repellendus quasi enim quaerat ab
+          quam deserunt!</div>
+        <div>Fugiat ex quaerat esse ad vero dolores labore, expedita dicta officiis maiores laudantium ducimus unde
+          recusandae! Rem enim cum ipsa autem, illo suscipit eum? Officiis cum porro minus reiciendis quae.</div>
+        <div>Ipsam, laboriosam ad eligendi odio ducimus impedit, aut ea sit voluptas quod eaque totam, sapiente at
+          tempora aspernatur quia dolores error non laudantium officiis minima. Quidem quis qui rem reiciendis!</div>
+        <div>Iure exercitationem veritatis adipisci aperiam impedit maxime rem in minus, minima eum neque repudiandae
+          suscipit dolor modi animi voluptatem. Facere consequuntur delectus, voluptates culpa rem praesentium
+          voluptatum labore deleniti beatae.</div>
+        <div>In eveniet dolorem officia. Atque iure necessitatibus doloribus minima porro accusamus maiores, minus fugit
+          fugiat recusandae quaerat quo consectetur quibusdam quis quas velit commodi expedita laboriosam laborum
+          voluptates, vel saepe.</div>
+        <div>Delectus dolorum maiores officia dignissimos nulla accusantium repellat minima autem fugiat neque
+          voluptatem explicabo facilis totam iste, veritatis eius blanditiis placeat, aliquam rerum, laborum quae odit?
+          Totam esse quibusdam dignissimos!</div>
+      </div>
+      <div class="footer">footer</div>
+    </div>
+  </body>
+
+  <script>
+    const settings = {
+      style: 'style-full-top', // 风格- style-full-top:顶部铺满, style-full-side:边栏铺满
+      scorllType: 'scroll-content', // 滚动位置- scroll-global:全局滚动, scroll-content:内容滚动
+      sideStyle: 'expand', // 侧栏风格- collapse:收起, expand:展开
+    }
+
+    const container = document.querySelector(".container")
+    // container.classList.add(settings.style)
+    // container.classList.add(settings.scorllType)
+    // container.classList.add(settings.sideStyle)
+    container.className = container.className.replace(/container/, `container ${settings.style} ${settings.scorllType} ${settings.sideStyle}`)
+    // 切换风格
+    function setStyle () {
+      if (settings.style === 'style-full-top') {
+        settings.style = 'style-full-side'
+        container.className = container.className.replace(/style-full-top/, 'style-full-side')
+      } else if (settings.style === 'style-full-side') {
+        settings.style = 'style-full-top'
+        container.className = container.className.replace(/style-full-side/, 'style-full-top')
+      }
+      console.log(container.className)
+    }
+
+    // 切换滚动位置
+    function setScrollType () {
+      if (settings.scorllType === 'scroll-global') {
+        settings.scorllType = 'scroll-content'
+        container.className = container.className.replace(/scroll-global/, 'scroll-content')
+      } else if (settings.scorllType === 'scroll-content') {
+        settings.scorllType = 'scroll-global'
+        container.className = container.className.replace(/scroll-content/, 'scroll-global')
+      }
+    }
+
+    // 切换侧栏风格
+    function setSideStyle () {
+      if (settings.sideStyle === 'expand') {
+        settings.sideStyle = 'collapse'
+        container.className = container.className.replace(/expand/, 'collapse')
+      } else if (settings.sideStyle === 'collapse') {
+        settings.sideStyle = 'expand'
+        container.className = container.className.replace(/collapse/, 'expand')
+      }
+    }
+
+    //
+    function setScroll () {
+
+    }
+  </script>
+
+</html>
