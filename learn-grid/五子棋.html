@@ -7,271 +7,1444 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>五子棋</title>
     <style>
+      :root {
+        --gap: 1px;
+        --gap-value: 1;
+        --size: 15;
+        /* 计算方法：--size * --gap-value px */
+        --size-1: 15px;
+        --total_height: calc(100vh - var(--size-1));
+        --item_height: calc((100vh - var(--size-1)) / var(--size));
+      }
+
       body {
         margin: 0;
       }
 
       #wrapper {
-        height: calc(100vh - 14px);
-        width: calc(100vh - 14px);
+        background-color: rgb(222, 199, 155);
+        height: var(--total_height);
+        width: var(--total_height);
         margin: 0 auto;
         display: grid;
-        grid-template-columns: repeat(15, 1fr);
-        grid-template-rows: repeat(15, 1fr);
-        gap: 1px;
+        grid-template-columns: repeat(var(--size), 1fr);
+        grid-template-rows: repeat(var(--size), 1fr);
+        gap: 0;
       }
 
       .item {
         background-color: rgb(222, 199, 155);
-        height: calc((100vh - 14px) / 15);
-        width: calc((100vh - 14px) / 15);
+        height: var(--item_height);
+        width: var(--item_height);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 1px;
       }
 
-      /* .item:hover {
-        background-color: aqua;
-      } */
+      .gg:nth-child(1) {
+        border-top-left-radius: 100%;
+      }
+
+      .gg:nth-child(2) {
+        border-top-right-radius: 100%;
+      }
+
+      .gg:nth-child(3) {
+        border-bottom-left-radius: 100%;
+      }
+
+      .gg:nth-child(4) {
+        border-bottom-right-radius: 100%;
+      }
+
+      .gg {
+        background-color: rgb(228, 176, 80);
+      }
+
+      .ttt {
+        grid-column: 1;
+        grid-row: 1;
+        background-color: red;
+        border-radius: 100%;
+      }
     </style>
   </head>
 
   <body>
     <div id="wrapper">
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
-      <div class="item"></div>
+      <div class="ttt"></div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
+      <div class="item">
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+        <div class="gg"></div>
+      </div>
     </div>
     <script>
+      let step = 0
       const items = window.document.getElementsByClassName('item')
       for (const key in items) {
         items[key].onclick = grayBack;
       }
 
       function grayBack () {
-        console.log(1212)
-        this.style.backgroundColor = "rgb(204, 204, 204)";
+        const ggs = this.getElementsByClassName('gg')
+        if (step % 2 === 0) {
+          for (const key in ggs) {
+            ggs[key].style.backgroundColor = "#000";
+          }
+        } else {
+          for (const key in ggs) {
+            ggs[key].style.backgroundColor = "#fff";
+          }
+        }
+        step++
       }
-
     </script>
   </body>
 
