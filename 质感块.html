@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>质感块</title>
+    <link rel="stylesheet" href="./js/highlight.js/demo/styles/default.css">
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #acbaca;
+      }
+
+      #button {
+        width: 300px;
+        height: 300px;
+        background-color: #c9d5e0;
+        border-radius: 50px;
+        box-shadow: 30px 30px 30px -10px rgba(0, 0, 0, 0.15),
+          inset 15px 15px 10px rgba(255, 255, 255, 0.75),
+          -15px -15px 35px rgba(255, 255, 255, 0.55),
+          inset -1px -1px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .code {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 5px;
+        font-size: 12px;
+        min-width: 25%;
+      }
+
+      #css {
+        margin-top: 5px;
+      }
+
+      .title {
+        padding: 5px 10px;
+        background-color: #f3f3f3;
+        width: fit-content;
+        font-size: 1.2em;
+        pointer-events: none;
+      }
+
+      .title::after {
+        content: attr(data-content);
+        font-size: 1em;
+        padding-left: 10px;
+        color: #000;
+        cursor: pointer;
+        pointer-events: auto;
+      }
+
+      pre {
+        margin: 0;
+      }
+
+      code {
+        font-family: Consolas, Monaco, monospace;
+        font-size: 1.2em;
+        transition: all .3s;
+        opacity: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="button"></div>
+
+    <div class="code">
+      <div id="html">
+        <div id="title-html" class="title" data-content="收起">HTML代码</div>
+        <pre><code class="language-html"></code></pre>
+      </div>
+
+      <div id="css">
+        <div id="title-css" class="title" data-content="收起">CSS代码</div>
+        <pre><code>#button {
+            width: 300px;
+            height: 300px;
+            background-color: #c9d5e0;
+            border-radius: 50px;
+            box-shadow: 30px 30px 30px -10px rgba(0, 0, 0, 0.15),
+            inset 15px 15px 10px rgba(255, 255, 255, 0.75),
+            -15px -15px 35px rgba(255, 255, 255, 0.55),
+            inset -1px -1px 10px rgba(0, 0, 0, 0.2);
+      }</code></pre>
+      </div>
+    </div>
+    <script src="./js/highlight.js/highlight.min.js"></script>
+    <script>
+      window.document.querySelector(".language-html").innerHTML = htmlEncode(`<div id="button"></div>`)
+      hljs.highlightAll();
+      // html
+      window.document.querySelector("#title-html").addEventListener('click', function () {
+        if (this.getAttribute('data-content') === '收起') {
+          this.setAttribute('data-content', '展开')
+          this.parentNode.querySelector("code").style.opacity = 0
+        } else {
+          this.setAttribute('data-content', '收起')
+          this.parentNode.querySelector("code").style.opacity = 1
+        }
+      })
+      // css
+      window.document.querySelector("#title-css").addEventListener('click', function () {
+        if (this.getAttribute('data-content') === '收起') {
+          this.setAttribute('data-content', '展开')
+          this.parentNode.querySelector("code").style.opacity = 0
+        } else {
+          this.setAttribute('data-content', '收起')
+          this.parentNode.querySelector("code").style.opacity = 1
+        }
+      })
+
+      /**
+       *  把html转义成HTML实体字符
+       * @param str
+       * @returns {string}
+       * @constructor
+       */
+      function htmlEncode (str) {
+        var s = "";
+        if (str.length === 0) {
+          return "";
+        }
+        s = str.replace(/&/g, "&amp;");
+        s = s.replace(/</g, "&lt;");
+        s = s.replace(/>/g, "&gt;");
+        s = s.replace(/ /g, "&nbsp;");
+        s = s.replace(/\'/g, "&#39;");//IE下不支持实体名称
+        s = s.replace(/\"/g, "&quot;");
+        return s;
+      }
+    </script>
+  </body>
+
+</html>
